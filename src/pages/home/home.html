@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Chat Ionic
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-list>
+    <ion-list-header>Selecione um chat</ion-list-header>
+
+    <ion-item>
+      <ion-label>Chats</ion-label>
+      <ion-select [(ngModel)]="opcao" (change)="opcao" placeholder="Selecione para entrar no chat">
+        <ion-option *ngFor="let note of notes"  [value]="note">{{note.title}}</ion-option>
+      </ion-select>
+
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Digite seu Nome</ion-label>
+      <ion-input [(ngModel)]="usuario" type="text"></ion-input>
+    </ion-item>
+
+    <ion-fab end bottom>
+      <button ion-fab color="primary" (click)="onSelectChat()">
+        <ion-icon name="chatboxes" ></ion-icon>
+      </button>
+    </ion-fab>
+
+  </ion-list>
+</ion-content>
