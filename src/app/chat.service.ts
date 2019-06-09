@@ -1,8 +1,9 @@
 import {Injectable} from "@angular/core";
-
+import {AngularFireDatabase} from 'angularfire2/database'
 @Injectable()
 export class ChatService {
-
+  constructor (private db: AngularFireDatabase){
+  }
   notes = [
     {
       title: 'Cinema'
@@ -63,4 +64,15 @@ export class ChatService {
       Icon: 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y)'
     }
   ];
+
+  fetchNotes (sala){
+    return this.db.list("/conversaChat",{
+      query:{
+        orderByChild:'sala',
+        equalTo:sala
+      }
+    });
+  }
+
+
 }

@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {ChatService} from "../../app/chat.service";
+import {AngularFireDatabase} from "angularfire2/database";
 
 // import {ChatService} from '../../app/chat.service'
 /**
@@ -20,35 +21,30 @@ export class ChatPage {
   user;
   chatParam;
   usuarioParam;
-  conversaChat=[];
+  conversaChat;
   sala;
   iconSelect;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public chatSevice: ChatService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public chatSevice: ChatService,private db: AngularFireDatabase) {
     this.sala = this.navParams.get("salaSelecionada");
-    for (let item of this.chatSevice.conversaChat) {
-      if(item.sala == this.sala){
+    console.log(db);
 
-        this.conversaChat.push({
-          sala: item.sala,
-          mensagem: item.mensagem,
-          Usuario: item.Usuario,
-          Icon:item.Icon
-        })
-
-      }
-    }
     this.chatParam = this.navParams.get("chatParam");
     this.usuarioParam = this.navParams.get("usuarioParam");
     this.iconSelect = this.navParams.get("icon");
   }
 
+  ngOnInit (){
+    this.conversaChat = this.chatSevice.fetchNotes(this.sala);
+  }
   addMensagem() {
-    this.conversaChat.push({
+    this.db.list("/conversaChat/").push({
       sala: this.sala,
       mensagem: this.msg,
       Usuario: this.usuarioParam,
       Icon:this.iconSelect
     });
+
+
     this.msg = ""
   }
 

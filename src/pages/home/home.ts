@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController} from "ionic-angular";
 import {ChatService} from "../../app/chat.service";
-
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -17,6 +16,7 @@ export class HomePage {
     this.notes = this.chatSevice.notes;
     this.icons = this.chatSevice.icons;
   }
+
 
   onSelectChat() {
     this.userExistent = false;

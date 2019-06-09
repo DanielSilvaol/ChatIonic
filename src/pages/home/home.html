@@ -25,7 +25,7 @@
       <ion-label>Selecione um icone</ion-label>
 
       <ion-list radio-group [(ngModel)]="iconUser">
-        <ion-item *ngFor="let icon of icons" >
+        <ion-item *ngFor="let icon of icons " >
           <ion-label>
             <ion-img style="height: 50px;width: 50px" src="{{icon.img}}"></ion-img></ion-label>
           <ion-radio value="{{icon.img}}"></ion-radio>

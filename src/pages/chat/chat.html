@@ -14,7 +14,7 @@
 <ion-content padding>
 
     <div style="width: 100%; height: 450px;overflow-y: auto">
-      <div *ngFor="let mensagem of conversaChat">
+      <div *ngFor="let mensagem of conversaChat |async">
         <ion-chip style="height: 60px;">
           <ion-avatar>
             <img src="{{mensagem.Icon}}">
