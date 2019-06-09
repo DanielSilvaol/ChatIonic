@@ -12,15 +12,27 @@
     <ion-item>
       <ion-label>Chats</ion-label>
       <ion-select [(ngModel)]="opcao" (change)="opcao" placeholder="Selecione para entrar no chat">
-        <ion-option *ngFor="let note of notes"  [value]="note">{{note.title}}</ion-option>
+        <ion-option *ngFor="let note of notes"  [value]="note.title">{{note.title}}</ion-option>
       </ion-select>
-
     </ion-item>
 
     <ion-item>
       <ion-label>Digite seu Nome</ion-label>
       <ion-input [(ngModel)]="usuario" type="text"></ion-input>
     </ion-item>
+    <div style="overflow-y: scroll;height: 400px">
+
+      <ion-label>Selecione um icone</ion-label>
+
+      <ion-list radio-group [(ngModel)]="iconUser">
+        <ion-item *ngFor="let icon of icons" >
+          <ion-label>
+            <ion-img style="height: 50px;width: 50px" src="{{icon.img}}"></ion-img></ion-label>
+          <ion-radio value="{{icon.img}}"></ion-radio>
+        </ion-item>
+      </ion-list>
+    </div>
+
 
     <ion-fab end bottom>
       <button ion-fab color="primary" (click)="onSelectChat()">
